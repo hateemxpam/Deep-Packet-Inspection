@@ -1,0 +1,9 @@
+# DPI Engine Rules File
+# Format: BLOCK_IP / BLOCK_APP / BLOCK_DOMAIN followed by value
+#
+# Examples (uncomment to activate):
+
+# BLOCK_APP    YouTube
+# BLOCK_APP    TikTok
+# BLOCK_DOMAIN facebook
+# BLOCK_IP     192.168.1.50
