@@ -191,6 +191,51 @@ CMakeFiles/dpi_engine.dir/src/reporter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/dpi_engine.dir/src/reporter.cpp.s"
 	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:\Practice\Deep Packet Inspection\src\reporter.cpp" -o CMakeFiles\dpi_engine.dir\src\reporter.cpp.s
 
+CMakeFiles/dpi_engine.dir/src/worker.cpp.obj: CMakeFiles/dpi_engine.dir/flags.make
+CMakeFiles/dpi_engine.dir/src/worker.cpp.obj: CMakeFiles/dpi_engine.dir/includes_CXX.rsp
+CMakeFiles/dpi_engine.dir/src/worker.cpp.obj: D:/Practice/Deep\ Packet\ Inspection/src/worker.cpp
+CMakeFiles/dpi_engine.dir/src/worker.cpp.obj: CMakeFiles/dpi_engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\Practice\Deep Packet Inspection\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/dpi_engine.dir/src/worker.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/dpi_engine.dir/src/worker.cpp.obj -MF CMakeFiles\dpi_engine.dir\src\worker.cpp.obj.d -o CMakeFiles\dpi_engine.dir\src\worker.cpp.obj -c "D:\Practice\Deep Packet Inspection\src\worker.cpp"
+
+CMakeFiles/dpi_engine.dir/src/worker.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/dpi_engine.dir/src/worker.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:\Practice\Deep Packet Inspection\src\worker.cpp" > CMakeFiles\dpi_engine.dir\src\worker.cpp.i
+
+CMakeFiles/dpi_engine.dir/src/worker.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/dpi_engine.dir/src/worker.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:\Practice\Deep Packet Inspection\src\worker.cpp" -o CMakeFiles\dpi_engine.dir\src\worker.cpp.s
+
+CMakeFiles/dpi_engine.dir/src/mt_engine.cpp.obj: CMakeFiles/dpi_engine.dir/flags.make
+CMakeFiles/dpi_engine.dir/src/mt_engine.cpp.obj: CMakeFiles/dpi_engine.dir/includes_CXX.rsp
+CMakeFiles/dpi_engine.dir/src/mt_engine.cpp.obj: D:/Practice/Deep\ Packet\ Inspection/src/mt_engine.cpp
+CMakeFiles/dpi_engine.dir/src/mt_engine.cpp.obj: CMakeFiles/dpi_engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\Practice\Deep Packet Inspection\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/dpi_engine.dir/src/mt_engine.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/dpi_engine.dir/src/mt_engine.cpp.obj -MF CMakeFiles\dpi_engine.dir\src\mt_engine.cpp.obj.d -o CMakeFiles\dpi_engine.dir\src\mt_engine.cpp.obj -c "D:\Practice\Deep Packet Inspection\src\mt_engine.cpp"
+
+CMakeFiles/dpi_engine.dir/src/mt_engine.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/dpi_engine.dir/src/mt_engine.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:\Practice\Deep Packet Inspection\src\mt_engine.cpp" > CMakeFiles\dpi_engine.dir\src\mt_engine.cpp.i
+
+CMakeFiles/dpi_engine.dir/src/mt_engine.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/dpi_engine.dir/src/mt_engine.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:\Practice\Deep Packet Inspection\src\mt_engine.cpp" -o CMakeFiles\dpi_engine.dir\src\mt_engine.cpp.s
+
+CMakeFiles/dpi_engine.dir/src/hot_reload.cpp.obj: CMakeFiles/dpi_engine.dir/flags.make
+CMakeFiles/dpi_engine.dir/src/hot_reload.cpp.obj: CMakeFiles/dpi_engine.dir/includes_CXX.rsp
+CMakeFiles/dpi_engine.dir/src/hot_reload.cpp.obj: D:/Practice/Deep\ Packet\ Inspection/src/hot_reload.cpp
+CMakeFiles/dpi_engine.dir/src/hot_reload.cpp.obj: CMakeFiles/dpi_engine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="D:\Practice\Deep Packet Inspection\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/dpi_engine.dir/src/hot_reload.cpp.obj"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/dpi_engine.dir/src/hot_reload.cpp.obj -MF CMakeFiles\dpi_engine.dir\src\hot_reload.cpp.obj.d -o CMakeFiles\dpi_engine.dir\src\hot_reload.cpp.obj -c "D:\Practice\Deep Packet Inspection\src\hot_reload.cpp"
+
+CMakeFiles/dpi_engine.dir/src/hot_reload.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/dpi_engine.dir/src/hot_reload.cpp.i"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:\Practice\Deep Packet Inspection\src\hot_reload.cpp" > CMakeFiles\dpi_engine.dir\src\hot_reload.cpp.i
+
+CMakeFiles/dpi_engine.dir/src/hot_reload.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/dpi_engine.dir/src/hot_reload.cpp.s"
+	C:\msys64\ucrt64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:\Practice\Deep Packet Inspection\src\hot_reload.cpp" -o CMakeFiles\dpi_engine.dir\src\hot_reload.cpp.s
+
 # Object files for target dpi_engine
 dpi_engine_OBJECTS = \
 "CMakeFiles/dpi_engine.dir/src/main.cpp.obj" \
@@ -200,7 +245,10 @@ dpi_engine_OBJECTS = \
 "CMakeFiles/dpi_engine.dir/src/sni_extractor.cpp.obj" \
 "CMakeFiles/dpi_engine.dir/src/flow_tracker.cpp.obj" \
 "CMakeFiles/dpi_engine.dir/src/rule_manager.cpp.obj" \
-"CMakeFiles/dpi_engine.dir/src/reporter.cpp.obj"
+"CMakeFiles/dpi_engine.dir/src/reporter.cpp.obj" \
+"CMakeFiles/dpi_engine.dir/src/worker.cpp.obj" \
+"CMakeFiles/dpi_engine.dir/src/mt_engine.cpp.obj" \
+"CMakeFiles/dpi_engine.dir/src/hot_reload.cpp.obj"
 
 # External object files for target dpi_engine
 dpi_engine_EXTERNAL_OBJECTS =
@@ -213,11 +261,14 @@ dpi_engine.exe: CMakeFiles/dpi_engine.dir/src/sni_extractor.cpp.obj
 dpi_engine.exe: CMakeFiles/dpi_engine.dir/src/flow_tracker.cpp.obj
 dpi_engine.exe: CMakeFiles/dpi_engine.dir/src/rule_manager.cpp.obj
 dpi_engine.exe: CMakeFiles/dpi_engine.dir/src/reporter.cpp.obj
+dpi_engine.exe: CMakeFiles/dpi_engine.dir/src/worker.cpp.obj
+dpi_engine.exe: CMakeFiles/dpi_engine.dir/src/mt_engine.cpp.obj
+dpi_engine.exe: CMakeFiles/dpi_engine.dir/src/hot_reload.cpp.obj
 dpi_engine.exe: CMakeFiles/dpi_engine.dir/build.make
 dpi_engine.exe: CMakeFiles/dpi_engine.dir/linkLibs.rsp
 dpi_engine.exe: CMakeFiles/dpi_engine.dir/objects1.rsp
 dpi_engine.exe: CMakeFiles/dpi_engine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="D:\Practice\Deep Packet Inspection\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable dpi_engine.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="D:\Practice\Deep Packet Inspection\build\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable dpi_engine.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\dpi_engine.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

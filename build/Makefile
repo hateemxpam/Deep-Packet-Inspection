@@ -152,6 +152,30 @@ src/flow_tracker.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\dpi_engine.dir\build.make CMakeFiles/dpi_engine.dir/src/flow_tracker.cpp.s
 .PHONY : src/flow_tracker.cpp.s
 
+src/hot_reload.obj: src/hot_reload.cpp.obj
+.PHONY : src/hot_reload.obj
+
+# target to build an object file
+src/hot_reload.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dpi_engine.dir\build.make CMakeFiles/dpi_engine.dir/src/hot_reload.cpp.obj
+.PHONY : src/hot_reload.cpp.obj
+
+src/hot_reload.i: src/hot_reload.cpp.i
+.PHONY : src/hot_reload.i
+
+# target to preprocess a source file
+src/hot_reload.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dpi_engine.dir\build.make CMakeFiles/dpi_engine.dir/src/hot_reload.cpp.i
+.PHONY : src/hot_reload.cpp.i
+
+src/hot_reload.s: src/hot_reload.cpp.s
+.PHONY : src/hot_reload.s
+
+# target to generate assembly for a file
+src/hot_reload.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dpi_engine.dir\build.make CMakeFiles/dpi_engine.dir/src/hot_reload.cpp.s
+.PHONY : src/hot_reload.cpp.s
+
 src/main.obj: src/main.cpp.obj
 .PHONY : src/main.obj
 
@@ -175,6 +199,30 @@ src/main.s: src/main.cpp.s
 src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\dpi_engine.dir\build.make CMakeFiles/dpi_engine.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
+
+src/mt_engine.obj: src/mt_engine.cpp.obj
+.PHONY : src/mt_engine.obj
+
+# target to build an object file
+src/mt_engine.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dpi_engine.dir\build.make CMakeFiles/dpi_engine.dir/src/mt_engine.cpp.obj
+.PHONY : src/mt_engine.cpp.obj
+
+src/mt_engine.i: src/mt_engine.cpp.i
+.PHONY : src/mt_engine.i
+
+# target to preprocess a source file
+src/mt_engine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dpi_engine.dir\build.make CMakeFiles/dpi_engine.dir/src/mt_engine.cpp.i
+.PHONY : src/mt_engine.cpp.i
+
+src/mt_engine.s: src/mt_engine.cpp.s
+.PHONY : src/mt_engine.s
+
+# target to generate assembly for a file
+src/mt_engine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dpi_engine.dir\build.make CMakeFiles/dpi_engine.dir/src/mt_engine.cpp.s
+.PHONY : src/mt_engine.cpp.s
 
 src/packet_parser.obj: src/packet_parser.cpp.obj
 .PHONY : src/packet_parser.obj
@@ -320,6 +368,30 @@ src/types.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\dpi_engine.dir\build.make CMakeFiles/dpi_engine.dir/src/types.cpp.s
 .PHONY : src/types.cpp.s
 
+src/worker.obj: src/worker.cpp.obj
+.PHONY : src/worker.obj
+
+# target to build an object file
+src/worker.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dpi_engine.dir\build.make CMakeFiles/dpi_engine.dir/src/worker.cpp.obj
+.PHONY : src/worker.cpp.obj
+
+src/worker.i: src/worker.cpp.i
+.PHONY : src/worker.i
+
+# target to preprocess a source file
+src/worker.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dpi_engine.dir\build.make CMakeFiles/dpi_engine.dir/src/worker.cpp.i
+.PHONY : src/worker.cpp.i
+
+src/worker.s: src/worker.cpp.s
+.PHONY : src/worker.s
+
+# target to generate assembly for a file
+src/worker.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\dpi_engine.dir\build.make CMakeFiles/dpi_engine.dir/src/worker.cpp.s
+.PHONY : src/worker.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -332,9 +404,15 @@ help:
 	@echo ... src/flow_tracker.obj
 	@echo ... src/flow_tracker.i
 	@echo ... src/flow_tracker.s
+	@echo ... src/hot_reload.obj
+	@echo ... src/hot_reload.i
+	@echo ... src/hot_reload.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s
+	@echo ... src/mt_engine.obj
+	@echo ... src/mt_engine.i
+	@echo ... src/mt_engine.s
 	@echo ... src/packet_parser.obj
 	@echo ... src/packet_parser.i
 	@echo ... src/packet_parser.s
@@ -353,6 +431,9 @@ help:
 	@echo ... src/types.obj
 	@echo ... src/types.i
 	@echo ... src/types.s
+	@echo ... src/worker.obj
+	@echo ... src/worker.i
+	@echo ... src/worker.s
 .PHONY : help
 
 

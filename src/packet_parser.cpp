@@ -224,11 +224,11 @@ bool PacketParser::parse(const RawPacket& raw, ParsedPacket& out) {
     // Reset output
     out = ParsedPacket{};
 
-    if (raw.data == nullptr || raw.incl_len < 14) {
+    if (raw.data.empty() || raw.incl_len < 14) {
         return false; // Too short for even Ethernet header
     }
 
-    const uint8_t* data = raw.data;
+    const uint8_t* data = raw.data.data();
     const uint32_t len  = raw.incl_len;
     uint32_t offset     = 0;
 

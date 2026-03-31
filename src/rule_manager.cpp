@@ -3,22 +3,11 @@
 #include <sstream>
 #include <iostream>
 #include <algorithm>
+#include <cctype>
 
-// ─────────────────────────────────────────────
-// Rule file format (rules/rules.txt):
-//
-//   # Lines starting with # are comments
-//   BLOCK_IP     192.168.1.50
-//   BLOCK_APP    YouTube
-//   BLOCK_DOMAIN tiktok
-//   BLOCK_DOMAIN facebook
-//
-// ─────────────────────────────────────────────
-
-// Convert "x.x.x.x" string to uint32 (network byte order)
 static uint32_t parseIPString(const std::string& ip) {
     uint32_t result = 0;
-    int shift = 24;
+    int      shift  = 24;
     std::istringstream ss(ip);
     std::string octet;
     while (std::getline(ss, octet, '.') && shift >= 0) {
@@ -27,125 +16,121 @@ static uint32_t parseIPString(const std::string& ip) {
             if (val > 255) return 0;
             result |= (val << shift);
             shift -= 8;
-        } catch (...) {
-            return 0;
-        }
+        } catch (...) { return 0; }
     }
     return result;
 }
 
-// Case-insensitive string comparison
 static std::string toLower(std::string s) {
     std::transform(s.begin(), s.end(), s.begin(),
-                   [](unsigned char c){ return std::tolower(c); });
+        [](unsigned char c){ return std::tolower(c); });
     return s;
 }
 
-// Map app name string to AppType enum
 static AppType appNameToType(const std::string& name) {
-    std::string lower = toLower(name);
-    if (lower == "youtube")  return AppType::YOUTUBE;
-    if (lower == "facebook") return AppType::FACEBOOK;
-    if (lower == "twitter")  return AppType::TWITTER;
-    if (lower == "github")   return AppType::GITHUB;
-    if (lower == "netflix")  return AppType::NETFLIX;
-    if (lower == "tiktok")   return AppType::TIKTOK;
-    if (lower == "google")   return AppType::GOOGLE;
-    if (lower == "http")     return AppType::HTTP;
-    if (lower == "https")    return AppType::HTTPS;
-    if (lower == "dns")      return AppType::DNS;
+    std::string l = toLower(name);
+    if (l == "youtube")  return AppType::YOUTUBE;
+    if (l == "facebook") return AppType::FACEBOOK;
+    if (l == "twitter")  return AppType::TWITTER;
+    if (l == "github")   return AppType::GITHUB;
+    if (l == "netflix")  return AppType::NETFLIX;
+    if (l == "tiktok")   return AppType::TIKTOK;
+    if (l == "google")   return AppType::GOOGLE;
+    if (l == "http")     return AppType::HTTP;
+    if (l == "https")    return AppType::HTTPS;
+    if (l == "dns")      return AppType::DNS;
     return AppType::UNKNOWN;
 }
 
 bool RuleManager::loadFromFile(const std::string& filename) {
     std::ifstream file(filename);
     if (!file.is_open()) {
-        // Not an error — rules file is optional
-        std::cout << "[RuleManager] No rules file found at: "
-                  << filename << " (using defaults)\n";
+        std::cout << "[RuleManager] No rules file at: "
+                  << filename << " (running with no rules)\n";
         return true;
     }
 
+    // Build new rule sets then swap atomically under lock
+    std::unordered_set<uint32_t> new_ips;
+    std::unordered_set<int>      new_apps;
+    std::vector<std::string>     new_domains;
+
     std::string line;
-    int rules_loaded = 0;
+    int         count = 0;
 
     while (std::getline(file, line)) {
-        // Skip comments and empty lines
         if (line.empty() || line[0] == '#') continue;
 
         std::istringstream ss(line);
-        std::string command, value;
-        ss >> command >> value;
+        std::string        cmd, val;
+        ss >> cmd >> val;
 
-        if (command == "BLOCK_IP") {
-            blockIP(value);
-            ++rules_loaded;
-        } else if (command == "BLOCK_APP") {
-            AppType app = appNameToType(value);
-            if (app != AppType::UNKNOWN) {
-                blockApp(app);
-                ++rules_loaded;
-            } else {
-                std::cerr << "[RuleManager] Unknown app: " << value << "\n";
+        if (cmd == "BLOCK_IP") {
+            uint32_t ip = parseIPString(val);
+            if (ip != 0) {
+                new_ips.insert(ip);
+                std::cout << "[RuleManager] Block IP: " << val << "\n";
+                ++count;
             }
-        } else if (command == "BLOCK_DOMAIN") {
-            blockDomain(value);
-            ++rules_loaded;
-        } else {
-            std::cerr << "[RuleManager] Unknown rule command: "
-                      << command << "\n";
+        } else if (cmd == "BLOCK_APP") {
+            AppType app = appNameToType(val);
+            if (app != AppType::UNKNOWN) {
+                new_apps.insert(static_cast<int>(app));
+                std::cout << "[RuleManager] Block App: "
+                          << appTypeToString(app) << "\n";
+                ++count;
+            }
+        } else if (cmd == "BLOCK_DOMAIN") {
+            new_domains.push_back(toLower(val));
+            std::cout << "[RuleManager] Block Domain: " << val << "\n";
+            ++count;
         }
     }
 
-    std::cout << "[RuleManager] Loaded " << rules_loaded
-              << " rules from: " << filename << "\n";
+    // Swap under lock so workers always see a consistent rule set
+    {
+        std::lock_guard<std::mutex> lock(mutex_);
+        blocked_ips_     = std::move(new_ips);
+        blocked_apps_    = std::move(new_apps);
+        blocked_domains_ = std::move(new_domains);
+    }
+
+    std::cout << "[RuleManager] Loaded " << count << " rules.\n";
     return true;
 }
 
 void RuleManager::blockIP(const std::string& ip) {
     uint32_t parsed = parseIPString(ip);
-    if (parsed != 0) {
-        blocked_ips_.insert(parsed);
-        std::cout << "[RuleManager] Blocking IP: " << ip << "\n";
-    } else {
-        std::cerr << "[RuleManager] Invalid IP address: " << ip << "\n";
-    }
+    if (parsed == 0) return;
+    std::lock_guard<std::mutex> lock(mutex_);
+    blocked_ips_.insert(parsed);
 }
 
 void RuleManager::blockApp(AppType app) {
+    std::lock_guard<std::mutex> lock(mutex_);
     blocked_apps_.insert(static_cast<int>(app));
-    std::cout << "[RuleManager] Blocking app: "
-              << appTypeToString(app) << "\n";
 }
 
 void RuleManager::blockDomain(const std::string& domain) {
+    std::lock_guard<std::mutex> lock(mutex_);
     blocked_domains_.push_back(toLower(domain));
-    std::cout << "[RuleManager] Blocking domain containing: "
-              << domain << "\n";
 }
 
 bool RuleManager::isBlocked(uint32_t           src_ip,
-                             AppType            app,
-                             const std::string& sni) const
+                              AppType            app,
+                              const std::string& sni) const
 {
-    // Check 1: Is source IP blocked?
-    if (blocked_ips_.count(src_ip)) {
-        return true;
-    }
+    std::lock_guard<std::mutex> lock(mutex_);
 
-    // Check 2: Is app type blocked?
+    if (blocked_ips_.count(src_ip)) return true;
+
     if (app != AppType::UNKNOWN &&
-        blocked_apps_.count(static_cast<int>(app))) {
-        return true;
-    }
+        blocked_apps_.count(static_cast<int>(app))) return true;
 
-    // Check 3: Does SNI contain a blocked domain substring?
     if (!sni.empty()) {
-        std::string lower_sni = toLower(sni);
+        std::string lower = toLower(sni);
         for (const auto& dom : blocked_domains_) {
-            if (lower_sni.find(dom) != std::string::npos) {
-                return true;
-            }
+            if (lower.find(dom) != std::string::npos) return true;
         }
     }
 

@@ -2,6 +2,7 @@
 #include <cstdint>
 #include <string>
 #include <vector>
+#include <mutex>
 
 // Supported transport protocols
 enum class Protocol : uint8_t {
@@ -27,11 +28,11 @@ enum class AppType {
 
 // Uniquely identifies one network connection
 struct FiveTuple {
-    uint32_t src_ip;
-    uint32_t dst_ip;
-    uint16_t src_port;
-    uint16_t dst_port;
-    Protocol protocol;
+    uint32_t src_ip   = 0;
+    uint32_t dst_ip   = 0;
+    uint16_t src_port = 0;
+    uint16_t dst_port = 0;
+    Protocol protocol = Protocol::OTHER;
 
     bool operator==(const FiveTuple& other) const;
 };
@@ -44,25 +45,26 @@ struct FiveTupleHash {
 // All state we track for one connection
 struct Flow {
     FiveTuple   tuple;
-    std::string sni;           // Extracted domain name
-    AppType     app  = AppType::UNKNOWN;
-    bool        blocked = false;
+    std::string sni;
+    AppType     app          = AppType::UNKNOWN;
+    bool        blocked      = false;
     uint32_t    packet_count = 0;
     uint64_t    byte_count   = 0;
 
-    // Buffers early TLS bytes so SNI can still be extracted when
-    // ClientHello is split across multiple TCP packets.
+    // TLS reassembly buffer
     std::vector<uint8_t> tls_client_hello_buffer;
     bool tls_handshake_done = false;
 };
 
 // Raw packet as read from pcap file
+// We store data by value (vector) so packets can be
+// safely passed between threads without lifetime issues
 struct RawPacket {
-    uint32_t ts_sec;
-    uint32_t ts_usec;
-    uint32_t incl_len;
-    uint32_t orig_len;
-    const uint8_t* data = nullptr;
+    uint32_t             ts_sec   = 0;
+    uint32_t             ts_usec  = 0;
+    uint32_t             incl_len = 0;
+    uint32_t             orig_len = 0;
+    std::vector<uint8_t> data;    // owned copy — safe across threads
 };
 
 // Parsed fields after protocol unwrapping
@@ -105,6 +107,5 @@ AppType sniToAppType(const std::string& sni);
 // Helper: AppType to readable string
 std::string appTypeToString(AppType app);
 
-// Helper: label to print next to SNI.
-// Known apps print app name, unknown apps print normalized base domain.
+// Helper: display label next to SNI in report
 std::string sniDisplayLabel(const std::string& sni, AppType app);

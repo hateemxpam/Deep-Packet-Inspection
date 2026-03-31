@@ -1,8 +1,10 @@
 #pragma once
+
 #include "types.h"
 
 class PacketParser {
 public:
-    // Returns true if packet was successfully parsed
+    // Parse one raw packet into ParsedPacket fields.
+    // Returns true when Ethernet+IPv4 were parsed successfully.
     static bool parse(const RawPacket& raw, ParsedPacket& out);
 };

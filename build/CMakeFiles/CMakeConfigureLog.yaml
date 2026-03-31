@@ -330,3 +330,43 @@ events:
       Running the CXX compiler's linker: "C:/msys64/ucrt64/x86_64-w64-mingw32/bin/ld.exe" "-v"
       GNU ld (GNU Binutils) 2.43.1
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/msys64/ucrt64/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/CheckCXXSourceCompiles.cmake:58 (cmake_check_source_compiles)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/FindThreads.cmake:99 (check_cxx_source_compiles)"
+      - "C:/msys64/ucrt64/share/cmake/Modules/FindThreads.cmake:163 (_threads_check_libc)"
+      - "CMakeLists.txt:25 (find_package)"
+    checks:
+      - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
+    directories:
+      source: "D:/Practice/Deep Packet Inspection/build/CMakeFiles/CMakeScratch/TryCompile-zp7ce3"
+      binary: "D:/Practice/Deep Packet Inspection/build/CMakeFiles/CMakeScratch/TryCompile-zp7ce3"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_HAVE_LIBC_PTHREAD"
+      cached: true
+      stdout: |
+        Change Dir: 'D:/Practice/Deep Packet Inspection/build/CMakeFiles/CMakeScratch/TryCompile-zp7ce3'
+        
+        Run Build Command(s): C:/msys64/ucrt64/bin/cmake.exe -E env VERBOSE=1 C:/msys64/ucrt64/bin/mingw32-make.exe -f Makefile cmTC_76050/fast
+        C:/msys64/ucrt64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_76050.dir\\build.make CMakeFiles/cmTC_76050.dir/build
+        mingw32-make[1]: Entering directory 'D:/Practice/Deep Packet Inspection/build/CMakeFiles/CMakeScratch/TryCompile-zp7ce3'
+        Building CXX object CMakeFiles/cmTC_76050.dir/src.cxx.obj
+        C:\\msys64\\ucrt64\\bin\\c++.exe -DCMAKE_HAVE_LIBC_PTHREAD  -std=gnu++17 -o CMakeFiles\\cmTC_76050.dir\\src.cxx.obj -c "D:\\Practice\\Deep Packet Inspection\\build\\CMakeFiles\\CMakeScratch\\TryCompile-zp7ce3\\src.cxx"
+        Linking CXX executable cmTC_76050.exe
+        C:\\msys64\\ucrt64\\bin\\cmake.exe -E cmake_link_script CMakeFiles\\cmTC_76050.dir\\link.txt --verbose=1
+        C:\\msys64\\ucrt64\\bin\\cmake.exe -E rm -f CMakeFiles\\cmTC_76050.dir/objects.a
+        C:\\msys64\\ucrt64\\bin\\ar.exe qc CMakeFiles\\cmTC_76050.dir/objects.a @CMakeFiles\\cmTC_76050.dir\\objects1.rsp
+        C:\\msys64\\ucrt64\\bin\\c++.exe -Wl,--whole-archive CMakeFiles\\cmTC_76050.dir/objects.a -Wl,--no-whole-archive -o cmTC_76050.exe -Wl,--out-implib,libcmTC_76050.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\\cmTC_76050.dir\\linkLibs.rsp
+        mingw32-make[1]: Leaving directory 'D:/Practice/Deep Packet Inspection/build/CMakeFiles/CMakeScratch/TryCompile-zp7ce3'
+        
+      exitCode: 0
+...
