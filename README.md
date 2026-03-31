@@ -253,15 +253,3 @@ dpi_engine <input.pcap> [output.pcap] [--rules <path>] [--workers N]
 - Rule language is intentionally simple (no regex priorities/actions).
 - `tests/` is currently empty (manual runs are primary validation).
 
-## Suggested Next Improvements
-
-1. Add unit tests for parser bounds and SNI edge cases.
-2. Add integration tests with fixed sample PCAP fixtures.
-3. Add structured JSON report export for dashboards.
-4. Add richer rule actions (allowlist, throttle, priority).
-5. Add improved domain normalization/public-suffix handling.
-6. Add benchmark script to compare worker counts automatically.
-
-## Safety and Ethics Note
-
-This project is for educational and defensive traffic analysis in controlled environments. Only inspect traffic you own or are authorized to analyze.
